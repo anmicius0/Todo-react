@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 
 import { ReactComponent as Logo } from "../images/menu.svg";
 
-// aside menu(desktop) and navbar(mobile)
+// side-menu(desktop) and navbar(mobile)
 const Menu = () => {
   const menuList = useRef(null);
 

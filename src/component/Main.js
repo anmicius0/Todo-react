@@ -1,30 +1,46 @@
 import React from "react";
 
 import PropTypes from "prop-types";
+import TodoItem from "./TodoItem";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-import TodoItem from "./TodoItem";
 
 const MySwal = withReactContent(Swal);
 
-// when user click 'add Todo' button
+// use Swal to get todo message
 async function getTodo() {
-  // show an alert to enter todo
   const { value: message } = await MySwal.fire({
     title: "Enter",
     input: "text",
     showCancelButton: true,
     inputPlaceholder: "type in your todo!"
   });
-  if (message) {
+  if (message !== undefined) {
     return message;
   }
 }
 
+function successAlert() {
+  MySwal.fire({
+    position: "top-end",
+    toast: true,
+    type: "success",
+    title: "Success!",
+    timer: 3000,
+    showConfirmButton: false
+  });
+}
+
 const Main = props => {
+  // get message from Swal and add to state(todos)
   const setTodos = () => {
     getTodo().then(message => {
-      props.addTodos(message);
+      if (message) {
+        props.addTodos(message);
+        successAlert();
+
+        return message;
+      }
     });
   };
 
