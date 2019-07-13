@@ -10,6 +10,7 @@ const Application = () => {
   const addTodos = message => {
     let newTodos = [...todos, message];
     setTodos(newTodos);
+    console.log(todos);
   };
 
   // remove todo from state(todos)
