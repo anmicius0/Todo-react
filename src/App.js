@@ -8,13 +8,13 @@ const Application = () => {
 
   // add todo to state(todos)
   const addTodos = message => {
-    const newTodos = todos.concat(message);
+    let newTodos = [...todos, message];
     setTodos(newTodos);
   };
 
   // remove todo from state(todos)
   const rmTodos = message => {
-    const newTodos = todos;
+    let newTodos = todos;
     const index = newTodos.indexOf(message);
     if (index !== -1) {
       newTodos.splice(index, 1);
@@ -26,11 +26,7 @@ const Application = () => {
   return (
     <>
       <Menu />
-      <Main
-        todos={todos}
-        addTodos={message => addTodos(message)}
-        rmTodos={message => rmTodos(message)}
-      />
+      <Main todos={todos} addTodos={addTodos} rmTodos={rmTodos} />
     </>
   );
 };
