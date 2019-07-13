@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
-import TodoPage from "./component/TodoPage";
+import Menu from "./component/Menu";
+import Main from "./component/Main";
 
 const Application = () => {
   const [todos, setTodos] = useState([]);
@@ -20,7 +21,16 @@ const Application = () => {
     setTodos(newTodos);
   };
 
-  return <TodoPage todos={todos} addTodos={addTodos} rmTodos={rmTodos} />;
+  return (
+    <>
+      <Menu />
+      <Main
+        todos={todos}
+        addTodos={message => addTodos(message)}
+        rmTodos={message => rmTodos(message)}
+      />
+    </>
+  );
 };
 
 export default Application;

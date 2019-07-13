@@ -1,17 +1,30 @@
-import React from "react";
+import React, { useRef } from "react";
 
+import { ReactComponent as Logo } from "../images/menu.svg";
+
+// aside menu(desktop) and navbar(mobile)
 const Menu = () => {
+  const menuList = useRef(null);
+
+  const toggleMenu = () => {
+    menuList.current.classList.toggle("active");
+  };
+
   return (
     <aside>
       <figure>
         <div id="avatar" />
         <figcaption>User Name</figcaption>
       </figure>
-      <img id="menulink" />
+
+      <Logo id="menuLink" onClick={toggleMenu} />
+
       <nav>
-        <ul id="menu">
+        <ul ref={menuList}>
           <li>
-            <a href="#">Todo</a>
+            <a href="#" onClick={toggleMenu}>
+              Todo
+            </a>
           </li>
         </ul>
       </nav>

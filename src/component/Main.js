@@ -1,5 +1,6 @@
 import React from "react";
 
+import PropTypes from "prop-types";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import TodoItem from "./TodoItem";
@@ -29,14 +30,14 @@ const Main = props => {
 
   return (
     <main>
-      <div id="title-bar">
+      <div id="titleBar">
         <h1 id="title">Todo</h1>
         <span id="counter">
           Item count: <span id="item-count">0</span>
         </span>
       </div>
 
-      <div id="todo-list" onChange={props.updateCounter}>
+      <div>
         {props.todos.map(message => (
           <TodoItem key={message} message={message} rmTodos={props.rmTodos} />
         ))}
@@ -50,6 +51,13 @@ const Main = props => {
       </div>
     </main>
   );
+};
+
+// prop type validation
+Main.propTypes = {
+  todos: PropTypes.array,
+  addTodos: PropTypes.func,
+  rmTodos: PropTypes.func
 };
 
 export default Main;
