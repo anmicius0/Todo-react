@@ -11,7 +11,8 @@ const TodoItem = props => {
       <div className="todoItem-btn">
         <button
           className="icon-btn add-btn"
-          onClick={props.rmTodos(props.message)}
+          // must use arrow function, or it'll run on every render
+          onClick={() => props.rmTodos(props.message)}
         >
           <div className="btn-txt"> complete </div>
         </button>

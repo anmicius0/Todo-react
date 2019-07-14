@@ -10,17 +10,15 @@ const Application = () => {
   const addTodos = message => {
     let newTodos = [...todos, message];
     setTodos(newTodos);
-    console.log(todos);
   };
 
   // remove todo from state(todos)
   const rmTodos = message => {
     let newTodos = todos;
-    const index = newTodos.indexOf(message);
+    const index = todos.indexOf(message); // FIX by JANIIS
     if (index !== -1) {
-      newTodos.splice(index, 1);
+      newTodos = todos.filter((item, idx) => idx !== index);
     }
-
     setTodos(newTodos);
   };
 
