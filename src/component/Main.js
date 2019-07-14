@@ -1,4 +1,4 @@
-import React, { createRef } from "react";
+import React from "react";
 
 import PropTypes from "prop-types";
 import TodoItem from "./TodoItem";
@@ -20,24 +20,13 @@ async function getTodo() {
   }
 }
 
-function successAlert() {
-  MySwal.fire({
-    position: "top-end",
-    toast: true,
-    type: "success",
-    title: "Success!",
-    timer: 3000,
-    showConfirmButton: false
-  });
-}
-
 const Main = props => {
   // get message from Swal and add to state(todos)
   const setTodos = () => {
     getTodo().then(message => {
       if (message) {
         props.addTodos(message);
-        successAlert();
+        props.successAlert();
       }
     });
   };
@@ -71,7 +60,8 @@ const Main = props => {
 Main.propTypes = {
   todos: PropTypes.array,
   addTodos: PropTypes.func,
-  rmTodos: PropTypes.func
+  rmTodos: PropTypes.func,
+  successAlert: PropTypes.func
 };
 
 export default Main;

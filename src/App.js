@@ -2,9 +2,25 @@ import React, { useState } from "react";
 
 import Menu from "./component/Menu";
 import Main from "./component/Main";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+const MySwal = withReactContent(Swal);
+
+function successAlert() {
+  MySwal.fire({
+    position: "top-end",
+    toast: true,
+    type: "success",
+    title: "Success!",
+    timer: 3000,
+    showConfirmButton: false
+  });
+}
 
 const Application = () => {
   const [todos, setTodos] = useState([]);
+  const [username, setUsername] = useState("username");
 
   // add todo to state(todos)
   const addTodos = message => {
@@ -24,8 +40,17 @@ const Application = () => {
 
   return (
     <>
-      <Menu />
-      <Main todos={todos} addTodos={addTodos} rmTodos={rmTodos} />
+      <Menu
+        username={username}
+        setUsername={setUsername}
+        successAlert={successAlert}
+      />
+      <Main
+        todos={todos}
+        addTodos={addTodos}
+        rmTodos={rmTodos}
+        successAlert={successAlert}
+      />
     </>
   );
 };
