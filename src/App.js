@@ -26,6 +26,7 @@ const Application = () => {
   const addTodos = message => {
     let newTodos = [...todos, message];
     setTodos(newTodos);
+    window.localStorage.setItem("todos", newTodos);
   };
 
   // remove todo from state(todos)
@@ -36,6 +37,7 @@ const Application = () => {
       newTodos = todos.filter((item, idx) => idx !== index);
     }
     setTodos(newTodos);
+    window.localStorage.setItem("todos", newTodos);
   };
 
   return (
