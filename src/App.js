@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import Menu from "./component/Menu";
 import Main from "./component/Main";
@@ -39,6 +39,16 @@ const Application = () => {
     setTodos(newTodos);
     window.localStorage.setItem("todos", JSON.stringify(newTodos));
   };
+
+  const loadLocal = () => {
+    const local = JSON.parse(window.localStorage.getItem("todos"));
+    // local !== null ? props.addTodos(local) : null;
+    if (local !== null) {
+      addTodos(local);
+    }
+  };
+
+  useEffect(() => loadLocal(), []);
 
   return (
     <>
