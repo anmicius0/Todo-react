@@ -24,9 +24,9 @@ const Application = () => {
 
   // add todo to state(todos)
   const addTodos = message => {
-    let newTodos = [...todos, message];
+    let newTodos = todos.concat(message);
     setTodos(newTodos);
-    window.localStorage.setItem("todos", newTodos);
+    window.localStorage.setItem("todos", JSON.stringify(newTodos));
   };
 
   // remove todo from state(todos)
@@ -37,7 +37,7 @@ const Application = () => {
       newTodos = todos.filter((item, idx) => idx !== index);
     }
     setTodos(newTodos);
-    window.localStorage.setItem("todos", newTodos);
+    window.localStorage.setItem("todos", JSON.stringify(newTodos));
   };
 
   return (

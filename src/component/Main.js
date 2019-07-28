@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import PropTypes from "prop-types";
 import TodoItem from "./TodoItem";
@@ -30,6 +30,16 @@ const Main = props => {
       }
     });
   };
+
+  const loadLocal = () => {
+    const local = JSON.parse(window.localStorage.getItem("todos"));
+    // local !== null ? props.addTodos(local) : null;
+    if (local !== null) {
+      props.addTodos(local);
+    }
+  };
+
+  useEffect(() => loadLocal(), []);
 
   return (
     <main>
